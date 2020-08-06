@@ -34,6 +34,15 @@ button {
   justify-self: start;
 }
 
+.x {
+  background: url('https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-x.svg');
+
+}
+
+.o {
+  background: url('https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-o.svg')
+}
+
 .col-2 {
   justify-self: center;
 }

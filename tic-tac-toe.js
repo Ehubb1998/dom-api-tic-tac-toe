@@ -34,6 +34,7 @@ window.addEventListener("DOMContentLoaded", event => {
         gameDiagonal();
         tie();
         reloadButton();
+        giveUp();
     })
 
     let whoWon = "";
@@ -103,13 +104,26 @@ window.addEventListener("DOMContentLoaded", event => {
             reload.addEventListener("click", event => {
                 location.reload();
             })
-        } else {
-            giveup();
         }
     }
 
+    let play = 0;
     function giveUp() {
-        
+        play++;
+        let winner = document.getElementById("game-status");
+        let giveupButton = document.getElementById("give-up");
+        giveupButton.addEventListener("click", event => {
+            if (whoWon === "" && winner.innerHTML !== "Y'all Suck...") {
+                if (play % 2 == 0) {
+                    whoWon = "O Wins";
+                    winner.innerHTML = whoWon;
+                    reloadButton();
+                } else {
+                    whoWon = "X Wins";
+                    winner.innerHTML = whoWon;
+                    reloadButton();
+                }
+            }
+        });
     }
-
 });

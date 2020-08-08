@@ -33,6 +33,8 @@ window.addEventListener("DOMContentLoaded", event => {
         gameColumn();
         gameDiagonal();
         tie();
+        reloadButton();
+        giveUp();
     })
 
     let whoWon = "";
@@ -93,5 +95,35 @@ window.addEventListener("DOMContentLoaded", event => {
         if (counter === 9 && whoWon === "") {
             winner.innerHTML = "Y'all Suck..."
         }
+    }
+
+    function reloadButton() {
+        let winner = document.getElementById("game-status");
+        let reload = document.getElementById("new-game");
+        if (whoWon !== "" || winner.innerHTML === "Y'all Suck...") {
+            reload.addEventListener("click", event => {
+                location.reload();
+            })
+        }
+    }
+
+    let play = 0;
+    function giveUp() {
+        play++;
+        let winner = document.getElementById("game-status");
+        let giveupButton = document.getElementById("give-up");
+        giveupButton.addEventListener("click", event => {
+            if (whoWon === "" && winner.innerHTML !== "Y'all Suck...") {
+                if (play % 2 == 0) {
+                    whoWon = "O Wins";
+                    winner.innerHTML = whoWon;
+                    reloadButton();
+                } else {
+                    whoWon = "X Wins";
+                    winner.innerHTML = whoWon;
+                    reloadButton();
+                }
+            }
+        });
     }
 });
